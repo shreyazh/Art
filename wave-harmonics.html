@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Harmonics - Shreyash Srivastva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --dark: #1a1a1a;
+            --medium: #2d2d2d;
+            --accent: #8b7355;
+            --light-text: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--dark);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.98), rgba(26, 26, 26, 0.95));
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .collection-link {
+            font-size: 0.95rem;
+            color: var(--cream);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease 0.2s forwards;
+            transition: color 0.3s ease;
+        }
+
+        .collection-link:hover {
+            color: var(--accent);
+        }
+
+        .collection-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .main-container {
+            display: flex;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .image-section {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--medium);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.4s forwards;
+        }
+
+        .main-image-wrapper {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 241, 232, 0.15);
+            background: var(--cream);
+            padding: 2rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-section {
+            flex: 1;
+            padding: 3rem;
+            background-color: var(--dark);
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .metadata {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .meta-item {
+            display: flex;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .meta-label {
+            min-width: 140px;
+            color: var(--light-text);
+            font-weight: 400;
+        }
+
+        .meta-value {
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(245, 241, 232, 0.9);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.2s forwards;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.6s forwards;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cream);
+        }
+
+        .nav-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .image-section {
+                position: relative;
+                top: 0;
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .collection-link {
+                font-size: 0.85rem;
+            }
+
+            .image-section {
+                padding: 2rem;
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .main-image-wrapper {
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-heading {
+                font-size: 1.5rem;
+            }
+
+            .meta-item {
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+
+            .meta-label {
+                margin-bottom: 0.3rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .main-container {
+                margin-top: 70px;
+            }
+
+            .image-section {
+                padding: 1.5rem;
+                height: 45vh;
+                min-height: 300px;
+            }
+
+            .content-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" style="color: var(--cream); text-decoration: none;">Shreyash Srivastva</a>
+        </div>
+        <a href="artworks.html" class="collection-link">Collection</a>
+    </header>
+
+    <div class="main-container">
+        <div class="image-section">
+            <div class="main-image-wrapper">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23f5f1e8' width='400' height='600'/%3E%3Ctext x='200' y='50' text-anchor='middle' font-family='serif' font-size='14' fill='%23333'%3EHarmonic Vibrations of Sound%3C/text%3E%3Cg transform='translate(200 200)'%3E%3Cline x1='-160' y1='0' x2='160' y2='0' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cline x1='0' y1='-80' x2='0' y2='80' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cpath d='M-150,0 Q-130,-60 -110,0 T-70,0 T-30,0 T10,0 T50,0 T90,0 T130,0 L150,0' fill='none' stroke='%234a90e2' stroke-width='2.5'/%3E%3Ctext x='-160' y='-20' font-size='10' fill='%234a90e2'%3EFundamental%3C/text%3E%3C/g%3E%3Cg transform='translate(200 340)'%3E%3Cline x1='-160' y1='0' x2='160' y2='0' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cline x1='0' y1='-80' x2='0' y2='80' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cpath d='M-150,0 Q-140,-40 -130,0 T-110,0 T-90,0 T-70,0 T-50,0 T-30,0 T-10,0 T10,0 T30,0 T50,0 T70,0 T90,0 T110,0 T130,0 L150,0' fill='none' stroke='%23e24a4a' stroke-width='2.5'/%3E%3Ctext x='-160' y='-20' font-size='10' fill='%23e24a4a'%3EFirst Harmonic%3C/text%3E%3C/g%3E%3Cg transform='translate(200 480)'%3E%3Cline x1='-160' y1='0' x2='160' y2='0' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cline x1='0' y1='-80' x2='0' y2='80' stroke='%23333' stroke-width='1' opacity='0.4'/%3E%3Cpath d='M-150,0 Q-145,-25 -140,0 T-130,0 T-120,0 T-110,0 T-100,0 T-90,0 T-80,0 T-70,0 T-60,0 T-50,0 T-40,0 T-30,0 T-20,0 T-10,0 T0,0 T10,0 T20,0 T30,0 T40,0 T50,0 T60,0 T70,0 T80,0 T90,0 T100,0 T110,0 T120,0 T130,0 L150,0' fill='none' stroke='%2366a366' stroke-width='2.5'/%3E%3Ctext x='-160' y='-20' font-size='10' fill='%2366a366'%3ESecond Harmonic%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Wave Harmonics" class="main-image">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h1 class="title">Wave Harmonics</h1>
+
+            <div class="metadata">
+                <div class="meta-item">
+                    <span class="meta-label">Artist</span>
+                    <span class="meta-value">Ernst Chladni</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date</span>
+                    <span class="meta-value">November 3, 1704</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Medium</span>
+                    <span class="meta-value">Hand-colored engraving</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Dimensions</span>
+                    <span class="meta-value">30 × 22 cm</span>
+                </div>
+            </div>
+
+            <h2 class="section-heading">Description</h2>
+
+            <p class="description">
+                This elegant visualization captures the fundamental principles of wave theory and harmonic frequencies. The diagram illustrates how sound waves propagate through different media, showing the mathematical relationships between fundamental tones and their harmonics. Each waveform demonstrates a specific frequency ratio, revealing the deep connection between physics and music. The careful layering of these waves demonstrates how complex sounds emerge from the superposition of simple harmonic oscillations, a principle that underpins all of acoustics and wave mechanics.
+            </p>
+
+            <h2 class="section-heading">Scientific Legacy</h2>
+
+            <p class="description">
+                This work laid the foundation for modern acoustical science and influenced the development of wave theory across multiple fields. The precise mathematical representation of sound waves demonstrated that acoustic phenomena could be described through pure geometry and mathematics. These principles later proved essential in understanding electromagnetic waves, quantum mechanics, and signal processing. The visualization techniques pioneered here became a standard method for representing periodic phenomena, from ocean waves to radio transmissions.
+            </p>
+
+            <div class="navigation">
+                <a href="geometric-solids.html" class="nav-link">
+                    <span class="nav-label">Previous</span>
+                    <span class="nav-title">Geometric Solids</span>
+                </a>
+                <a href="botanical-classification.html" class="nav-link" style="text-align: right;">
+                    <span class="nav-label">Next</span>
+                    <span class="nav-title">Botanical Classification</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

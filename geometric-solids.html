@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Solids - Shreyash Srivastva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --dark: #1a1a1a;
+            --medium: #2d2d2d;
+            --accent: #8b7355;
+            --light-text: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--dark);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.98), rgba(26, 26, 26, 0.95));
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .collection-link {
+            font-size: 0.95rem;
+            color: var(--cream);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease 0.2s forwards;
+            transition: color 0.3s ease;
+        }
+
+        .collection-link:hover {
+            color: var(--accent);
+        }
+
+        .collection-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .main-container {
+            display: flex;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .image-section {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--medium);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.4s forwards;
+        }
+
+        .main-image-wrapper {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 241, 232, 0.15);
+            background: #f9f6f0;
+            padding: 2rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-section {
+            flex: 1;
+            padding: 3rem;
+            background-color: var(--dark);
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .metadata {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .meta-item {
+            display: flex;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .meta-label {
+            min-width: 140px;
+            color: var(--light-text);
+            font-weight: 400;
+        }
+
+        .meta-value {
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(245, 241, 232, 0.9);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.2s forwards;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.6s forwards;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cream);
+        }
+
+        .nav-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .image-section {
+                position: relative;
+                top: 0;
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .collection-link {
+                font-size: 0.85rem;
+            }
+
+            .image-section {
+                padding: 2rem;
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .main-image-wrapper {
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-heading {
+                font-size: 1.5rem;
+            }
+
+            .meta-item {
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+
+            .meta-label {
+                margin-bottom: 0.3rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .main-container {
+                margin-top: 70px;
+            }
+
+            .image-section {
+                padding: 1.5rem;
+                height: 45vh;
+                min-height: 300px;
+            }
+
+            .content-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" style="color: var(--cream); text-decoration: none;">Shreyash Srivastva</a>
+        </div>
+        <a href="artworks.html" class="collection-link">Collection</a>
+    </header>
+
+    <div class="main-container">
+        <div class="image-section">
+            <div class="main-image-wrapper">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23f9f6f0' width='400' height='600'/%3E%3Ctext x='200' y='50' text-anchor='middle' font-family='serif' font-size='14' fill='%23333'%3EPLATONICORVM SOLIDORVM%3C/text%3E%3Cg transform='translate(120 180)'%3E%3Cpath d='M-70,-90 L70,-90 L90,0 L70,90 L-70,90 L-90,0 Z' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpolygon points='0,-70 50,-35 50,35 0,70 -50,35 -50,-35' fill='%23e8d7c3' stroke='%23333' stroke-width='1.5'/%3E%3Cpolygon points='0,-40 25,-20 25,20 0,40 -25,20 -25,-20' fill='%23d4c5b3' stroke='%23333' stroke-width='1'/%3E%3C/g%3E%3Cg transform='translate(280 180)'%3E%3Ccircle r='100' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M0,-70 L60,-35 L60,35 L0,70 L-60,35 L-60,-35 Z' fill='%23e8d7c3' stroke='%23333' stroke-width='1.5'/%3E%3Cpath d='M0,-40 L30,-20 L30,20 L0,40 L-30,20 L-30,-20 Z' fill='%23d4c5b3' stroke='%23333' stroke-width='1'/%3E%3C/g%3E%3Cg transform='translate(120 440)'%3E%3Cpath d='M-80,-60 L0,-100 L80,-60 L80,60 L0,100 L-80,60 Z' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpath d='M-50,-40 L0,-65 L50,-40 L50,40 L0,65 L-50,40 Z' fill='%23e8d7c3' stroke='%23333' stroke-width='1.5'/%3E%3C/g%3E%3Cg transform='translate(280 440)'%3E%3Cpolygon points='0,-80 70,-25 45,65 -45,65 -70,-25' fill='none' stroke='%23333' stroke-width='2'/%3E%3Cpolygon points='0,-55 45,-15 30,45 -30,45 -45,-15' fill='%23e8d7c3' stroke='%23333' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E" alt="Geometric Solids" class="main-image">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h1 class="title">Geometric Solids</h1>
+
+            <div class="metadata">
+                <div class="meta-item">
+                    <span class="meta-label">Artist</span>
+                    <span class="meta-value">Johannes Kepler</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date</span>
+                    <span class="meta-value">September 12, 1596</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Medium</span>
+                    <span class="meta-value">Woodcut engraving</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Dimensions</span>
+                    <span class="meta-value">26 × 19 cm</span>
+                </div>
+            </div>
+
+            <h2 class="section-heading">Description</h2>
+
+            <p class="description">
+                This masterful geometric study illustrates the five Platonic solids and their nested relationships in three-dimensional space. Johannes Kepler's fascination with these perfect forms led him to develop his Mysterium Cosmographicum, proposing that the spacing of the six known planets corresponded to these nested geometric shapes. While his cosmic model proved incorrect, this work demonstrates the deep connection Renaissance scientists saw between pure mathematics and physical reality. Each solid represents a fundamental symmetry in three dimensions, from the simple tetrahedron to the complex dodecahedron.
+            </p>
+
+            <h2 class="section-heading">Mathematical Significance</h2>
+
+            <p class="description">
+                The Platonic solids—tetrahedron, cube, octahedron, dodecahedron, and icosahedron—are the only convex polyhedra with identical faces, vertices, and angles. These forms have captivated mathematicians and philosophers since ancient Greece, representing ideal geometric perfection. Kepler's meticulous engravings not only illustrated these solids but also explored their volumetric and spatial relationships, contributing to the development of solid geometry and influencing architectural and artistic practices for centuries.
+            </p>
+
+            <div class="navigation">
+                <a href="planetary-motion.html" class="nav-link">
+                    <span class="nav-label">Previous</span>
+                    <span class="nav-title">Planetary Motion</span>
+                </a>
+                <a href="wave-harmonics.html" class="nav-link" style="text-align: right;">
+                    <span class="nav-label">Next</span>
+                    <span class="nav-title">Wave Harmonics</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Shreyash Srivastva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --dark: #1a1a1a;
+            --medium: #2d2d2d;
+            --accent: #8b7355;
+            --light-text: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--dark);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.98), rgba(26, 26, 26, 0.95));
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .logo a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--accent);
+        }
+
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .page-hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+            background: var(--medium);
+            border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+        }
+
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 4rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-bottom: 6rem;
+        }
+
+        .about-section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .about-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: rgba(245, 241, 232, 0.85);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-box {
+            background: var(--medium);
+            padding: 4rem;
+            border: 1px solid rgba(245, 241, 232, 0.1);
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.9s forwards;
+        }
+
+        .mission-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: center;
+            font-style: italic;
+            color: rgba(245, 241, 232, 0.9);
+        }
+
+        .footer {
+            padding: 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .header {
+                padding: 1.5rem 2rem;
+            }
+
+            .about-content {
+                padding: 6rem 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                gap: 0;
+                padding: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            }
+
+            .nav.active {
+                transform: translateY(0);
+            }
+
+            .nav a {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            }
+
+            .page-title {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                padding: 4rem 1.5rem;
+            }
+
+            .about-section-title {
+                font-size: 2rem;
+            }
+
+            .mission-box {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .about-section-title {
+                font-size: 1.75rem;
+            }
+
+            .about-text,
+            .mission-text {
+                font-size: 1rem;
+            }
+
+            .mission-box {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Shreyash Srivastva</a>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="artworks.html">Artworks</a>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <h1 class="page-title">About</h1>
+    </section>
+
+    <div class="about-content">
+        <div class="about-grid">
+            <div class="about-section">
+                <h2 class="about-section-title">The Curator</h2>
+                <p class="about-text">
+                    Shreyash Srivastva is a digital archivist and curator specializing in the preservation and presentation of historical scientific illustrations. With a background in both art history and information science, Shreyash bridges the gap between historical scholarship and contemporary digital presentation.
+                </p>
+                <p class="about-text">
+                    This collection represents years of research across libraries, museums, and archives worldwide, bringing together rare diagrams, charts, and illustrations that chronicle humanity's evolving understanding of the natural world.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h2 class="about-section-title">The Vision</h2>
+                <p class="about-text">
+                    The Shape of Knowledge explores how visual representation has shaped scientific thought across centuries. From early astronomical diagrams to intricate color theory wheels, each piece reveals the intimate relationship between seeing and understanding.
+                </p>
+                <p class="about-text">
+                    These artifacts remind us that science is not merely data, but a profoundly human endeavor to make sense of our world through observation, creativity, and visual imagination.
+                </p>
+            </div>
+        </div>
+
+        <div class="mission-box">
+            <h3 class="mission-title">Mission Statement</h3>
+            <p class="mission-text">
+                "To preserve and celebrate the visual language of scientific discovery, making accessible the beautiful and often overlooked illustrations that transformed our understanding of reality itself."
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="footer-text">© 2026 Shreyash Srivastva. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

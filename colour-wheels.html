@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyash Srivastva - Colour Wheels Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --dark: #1a1a1a;
+            --medium: #2d2d2d;
+            --accent: #8b7355;
+            --light-text: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--dark);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.98), rgba(26, 26, 26, 0.95));
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .collection-link {
+            font-size: 0.95rem;
+            color: var(--cream);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease 0.2s forwards;
+            transition: color 0.3s ease;
+        }
+
+        .collection-link:hover {
+            color: var(--accent);
+        }
+
+        .collection-link::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .main-container {
+            display: flex;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .image-section {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--medium);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.4s forwards;
+        }
+
+        .main-image-wrapper {
+            max-width: 90%;
+            max-height: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 241, 232, 0.15);
+            background: var(--cream);
+            padding: 2rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-section {
+            flex: 1;
+            padding: 3rem;
+            background-color: var(--dark);
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .metadata {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .meta-item {
+            display: flex;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .meta-label {
+            min-width: 140px;
+            color: var(--light-text);
+            font-weight: 400;
+        }
+
+        .meta-value {
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(245, 241, 232, 0.9);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.2s forwards;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.4s forwards;
+        }
+
+        .gallery-item {
+            background: var(--medium);
+            padding: 1.5rem;
+            border: 1px solid rgba(245, 241, 232, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1.6s forwards;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cream);
+        }
+
+        .nav-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .image-section {
+                position: relative;
+                top: 0;
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .collection-link {
+                font-size: 0.85rem;
+            }
+
+            .image-section {
+                padding: 2rem;
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .main-image-wrapper {
+                padding: 1rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-heading {
+                font-size: 1.5rem;
+            }
+
+            .meta-item {
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+            }
+
+            .meta-label {
+                margin-bottom: 0.3rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .main-container {
+                margin-top: 70px;
+            }
+
+            .image-section {
+                padding: 1.5rem;
+                height: 45vh;
+                min-height: 300px;
+            }
+
+            .content-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .title {
+                font-size: 1.75rem;
+            }
+
+            .gallery-item {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" style="color: var(--cream); text-decoration: none;">Shreyash Srivastva</a>
+        </div>
+        <a href="artworks.html" class="collection-link">Collection</a>
+    </header>
+
+    <div class="main-container">
+        <div class="image-section">
+            <div class="main-image-wrapper">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23f5f1e8' width='400' height='600'/%3E%3Ctext x='200' y='40' font-family='serif' font-size='10' text-anchor='middle' fill='%23333'%3E2. Bresnl Farbenlehre Tafel II%3C/text%3E%3Cg transform='translate(200 200)'%3E%3Ccircle cx='0' cy='0' r='90' fill='%23fff'/%3E%3Ccircle cx='0' cy='0' r='80' fill='none' stroke='%23000' stroke-width='0.5'/%3E%3Cpath d='M0,-80 L0,-50' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='0' cy='-65' r='25' fill='%23ff0000'/%3E%3Cpath d='M69.3,-40 L43.3,-31.25' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='56.3' cy='-35.6' r='25' fill='%23ff8800'/%3E%3Cpath d='M69.3,40 L43.3,31.25' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='56.3' cy='35.6' r='25' fill='%23ffff00'/%3E%3Cpath d='M0,80 L0,50' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='0' cy='65' r='25' fill='%2388ff00'/%3E%3Cpath d='M-69.3,40 L-43.3,31.25' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='-56.3' cy='35.6' r='25' fill='%2300ffff'/%3E%3Cpath d='M-69.3,-40 L-43.3,-31.25' stroke='%23000' stroke-width='0.5'/%3E%3Ccircle cx='-56.3' cy='-35.6' r='25' fill='%230088ff'/%3E%3Ctext x='0' y='-95' font-family='serif' font-size='7' text-anchor='middle'%3EPurpur%3C/text%3E%3Ctext x='85' y='-25' font-family='serif' font-size='7'%3ERoth%3C/text%3E%3Ctext x='85' y='30' font-family='serif' font-size='7'%3EOrange%3C/text%3E%3Ctext x='0' y='105' font-family='serif' font-size='7' text-anchor='middle'%3EGelb%3C/text%3E%3Ctext x='-85' y='30' font-family='serif' font-size='7' text-anchor='end'%3EGrün%3C/text%3E%3Ctext x='-85' y='-25' font-family='serif' font-size='7' text-anchor='end'%3EBlau Grün%3C/text%3E%3Ctext x='30' y='-55' font-family='serif' font-size='6'%3EViolett%3C/text%3E%3Ctext x='-30' y='-55' font-family='serif' font-size='6' text-anchor='end'%3EUltramarin%3C/text%3E%3C/g%3E%3Cg transform='translate(200 430)'%3E%3Ccircle cx='0' cy='0' r='90' fill='%23000'/%3E%3Ccircle cx='0' cy='0' r='80' fill='none' stroke='%23fff' stroke-width='0.5'/%3E%3CradialGradient id='grad1'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff0000'/%3E%3C/radialGradient%3E%3Ccircle cx='0' cy='-65' r='25' fill='url(%23grad1)'/%3E%3CradialGradient id='grad2'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff8800'/%3E%3C/radialGradient%3E%3Ccircle cx='56.3' cy='-35.6' r='25' fill='url(%23grad2)'/%3E%3CradialGradient id='grad3'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ffff00'/%3E%3C/radialGradient%3E%3Ccircle cx='56.3' cy='35.6' r='25' fill='url(%23grad3)'/%3E%3CradialGradient id='grad4'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2388ff00'/%3E%3C/radialGradient%3E%3Ccircle cx='0' cy='65' r='25' fill='url(%23grad4)'/%3E%3CradialGradient id='grad5'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/radialGradient%3E%3Ccircle cx='-56.3' cy='35.6' r='25' fill='url(%23grad5)'/%3E%3CradialGradient id='grad6'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230088ff'/%3E%3C/radialGradient%3E%3Ccircle cx='-56.3' cy='-35.6' r='25' fill='url(%23grad6)'/%3E%3Ctext x='0' y='-95' font-family='serif' font-size='7' text-anchor='middle' fill='%23fff'%3EPurpur%3C/text%3E%3Ctext x='85' y='-25' font-family='serif' font-size='7' fill='%23fff'%3ERoth%3C/text%3E%3Ctext x='85' y='30' font-family='serif' font-size='7' fill='%23fff'%3EOrange%3C/text%3E%3Ctext x='0' y='105' font-family='serif' font-size='7' text-anchor='middle' fill='%23fff'%3EGelb%3C/text%3E%3Ctext x='-85' y='30' font-family='serif' font-size='7' text-anchor='end' fill='%23fff'%3EGrün%3C/text%3E%3Ctext x='-85' y='-25' font-family='serif' font-size='7' text-anchor='end' fill='%23fff'%3EBlau Grün%3C/text%3E%3Ctext x='30' y='-55' font-family='serif' font-size='6' fill='%23fff'%3EViolett%3C/text%3E%3Ctext x='-30' y='-55' font-family='serif' font-size='6' text-anchor='end' fill='%23fff'%3EUltramarin%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Colour Wheels Illustration" class="main-image">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h1 class="title">Colour Wheels</h1>
+
+            <div class="metadata">
+                <div class="meta-item">
+                    <span class="meta-label">Artist</span>
+                    <span class="meta-value">Various</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date</span>
+                    <span class="meta-value">March 15, 1</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Medium</span>
+                    <span class="meta-value">Hand-colored with watercolor or gouache</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Dimensions</span>
+                    <span class="meta-value">20–30 cm</span>
+                </div>
+            </div>
+
+            <h2 class="section-heading">Artworks & Descriptions</h2>
+
+            <p class="description">
+                This is a chronology of various attempts over the past four centuries to visually organize and understand color. It showcases a range of forms and methods, from simple color wheels to multi-layered pyramids, and from scientific systems to those based on human emotion. Many of the images are sourced from Sarah Lowengard's The Creation of Color in Eighteenth-Century Europe (2006), which is highly recommended for those interested in the history of color. Additionally, Philip Ball's Bright Earth: Art and the Invention of Color (2003) provides an excellent exploration of how art, chemistry, and technology have influenced color throughout history.
+            </p>
+
+            <h2 class="section-heading">Gallery</h2>
+
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect fill='%23000' width='200' height='300'/%3E%3Cg transform='translate(100 100)'%3E%3Ccircle r='70' fill='%23fff'/%3E%3Cpath d='M0,-50 A50,50 0 0,1 43.3,-25 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M43.3,-25 A50,50 0 0,1 43.3,25 L0,0 Z' fill='%23ff8800'/%3E%3Cpath d='M43.3,25 A50,50 0 0,1 0,50 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M0,50 A50,50 0 0,1 -43.3,25 L0,0 Z' fill='%2388ff00'/%3E%3Cpath d='M-43.3,25 A50,50 0 0,1 -43.3,-25 L0,0 Z' fill='%2300ffff'/%3E%3Cpath d='M-43.3,-25 A50,50 0 0,1 0,-50 L0,0 Z' fill='%230088ff'/%3E%3C/g%3E%3Cg transform='translate(100 220)'%3E%3Ccircle r='70' fill='%23000'/%3E%3CradialGradient id='g1'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff0000'/%3E%3C/radialGradient%3E%3Cpath d='M0,-50 A50,50 0 0,1 43.3,-25 L0,0 Z' fill='url(%23g1)'/%3E%3CradialGradient id='g2'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ffff00'/%3E%3C/radialGradient%3E%3Cpath d='M43.3,-25 A50,50 0 0,1 43.3,25 L0,0 Z' fill='url(%23g2)'/%3E%3CradialGradient id='g3'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2388ff00'/%3E%3C/radialGradient%3E%3Cpath d='M43.3,25 A50,50 0 0,1 0,50 L0,0 Z' fill='url(%23g3)'/%3E%3CradialGradient id='g4'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/radialGradient%3E%3Cpath d='M0,50 A50,50 0 0,1 -43.3,25 L0,0 Z' fill='url(%23g4)'/%3E%3CradialGradient id='g5'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230088ff'/%3E%3C/radialGradient%3E%3Cpath d='M-43.3,25 A50,50 0 0,1 -43.3,-25 L0,0 Z' fill='url(%23g5)'/%3E%3CradialGradient id='g6'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/radialGradient%3E%3Cpath d='M-43.3,-25 A50,50 0 0,1 0,-50 L0,0 Z' fill='url(%23g6)'/%3E%3C/g%3E%3C/svg%3E" alt="Historical color wheel" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Cg transform='translate(50 100)'%3E%3Ccircle r='40' fill='%23fff'/%3E%3Cpath d='M0,-30 A30,30 0 0,1 26,-15 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M26,-15 A30,30 0 0,1 26,15 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M26,15 A30,30 0 0,1 0,30 L0,0 Z' fill='%23ff00ff'/%3E%3Cpath d='M0,30 A30,30 0 0,1 -26,15 L0,0 Z' fill='%230000ff'/%3E%3Cpath d='M-26,15 A30,30 0 0,1 -26,-15 L0,0 Z' fill='%2300ffff'/%3E%3Cpath d='M-26,-15 A30,30 0 0,1 0,-30 L0,0 Z' fill='%2300ff00'/%3E%3C/g%3E%3Cg transform='translate(150 100)'%3E%3Ccircle r='40' fill='%23fff'/%3E%3Cpath d='M0,-30 A30,30 0 0,1 26,-15 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M26,-15 A30,30 0 0,1 26,15 L0,0 Z' fill='%23ff8800'/%3E%3Cpath d='M26,15 A30,30 0 0,1 0,30 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M0,30 A30,30 0 0,1 -26,15 L0,0 Z' fill='%2300ff00'/%3E%3Cpath d='M-26,15 A30,30 0 0,1 -26,-15 L0,0 Z' fill='%230000ff'/%3E%3Cpath d='M-26,-15 A30,30 0 0,1 0,-30 L0,0 Z' fill='%23ff00ff'/%3E%3C/g%3E%3C/svg%3E" alt="Double color wheel" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Ccircle cx='60' cy='50' r='15' fill='%23ffff00' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='140' cy='50' r='15' fill='%23ff8800' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='15' fill='none' stroke='%23333' stroke-width='1'/%3E%3Cpath d='M60,120 Q100,100 140,120' fill='none' stroke='%23333' stroke-width='1'/%3E%3Cpath d='M60,120 A40,40 0 0,0 100,160' fill='%23ff0000' stroke='%23333' stroke-width='0.5' opacity='0.6'/%3E%3Cpath d='M100,160 A40,40 0 0,0 140,120' fill='%23ff00ff' stroke='%23333' stroke-width='0.5' opacity='0.6'/%3E%3C/svg%3E" alt="Geometric color study" class="gallery-image">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Cpolygon points='100,40 140,90 120,140 80,140 60,90' fill='%23ff0000' stroke='%23333' stroke-width='1'/%3E%3Cpolygon points='100,60 130,95 115,130 85,130 70,95' fill='%23ffff00'/%3E%3Cpolygon points='100,80 120,100 110,120 90,120 80,100' fill='%230088ff'/%3E%3Cpolygon points='100,95 110,105 105,112 95,112 90,105' fill='%23000'/%3E%3C/svg%3E" alt="Color pyramid" class="gallery-image">
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="botanical-classification.html" class="nav-link">
+                    <span class="nav-label">Previous</span>
+                    <span class="nav-title">Botanical Classification</span>
+                </a>
+                <a href="lunar-phases.html" class="nav-link" style="text-align: right;">
+                    <span class="nav-label">Next</span>
+                    <span class="nav-title">Lunar Phases</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
