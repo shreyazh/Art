@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunar Phases - Shreyash Srivastva</title>
+    <title>Shreyash Srivastva - Colour Wheels Collection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -52,6 +53,7 @@
             letter-spacing: 0.05em;
             opacity: 0;
             animation: fadeInDown 0.8s ease forwards;
+            z-index: 1001;
         }
 
         .collection-link {
@@ -64,6 +66,7 @@
             opacity: 0;
             animation: fadeInDown 0.8s ease 0.2s forwards;
             transition: color 0.3s ease;
+            z-index: 1001;
         }
 
         .collection-link:hover {
@@ -95,18 +98,23 @@
             animation: fadeIn 1s ease 0.4s forwards;
         }
 
-        .main-image-wrapper {
-            max-width: 90%;
-            max-height: 90%;
+        /* .main-image-wrapper {
+            max-width: 80%;
+            max-height: 80%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(245, 241, 232, 0.15);
-            background: #111;
+            background: var(--cream);
             padding: 2rem;
-        }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } */
 
         .main-image {
             width: 100%;
             height: auto;
+            max-height: 70vh;
+            object-fit: contain;
             display: block;
         }
 
@@ -183,6 +191,8 @@
             border: 1px solid rgba(245, 241, 232, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            display: block;
+            text-decoration: none;
         }
 
         .gallery-item:hover {
@@ -234,8 +244,12 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInDown {
@@ -300,9 +314,9 @@
                 min-height: 350px;
             }
 
-            .main-image-wrapper {
-                padding: 1rem;
-            }
+            /* .main-image-wrapper {
+                padding: 0.5rem;
+            } */
 
             .content-section {
                 padding: 2rem 1.5rem;
@@ -385,52 +399,75 @@
     <div class="main-container">
         <div class="image-section">
             <div class="main-image-wrapper">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23111' width='400' height='600'/%3E%3Cg transform='translate(200 80)'%3E%3Ctext y='0' text-anchor='middle' fill='%23fff' font-family='serif' font-size='18' letter-spacing='3'%3ELUNAR PHASES%3C/text%3E%3Ctext y='25' text-anchor='middle' fill='%23999' font-family='serif' font-size='12'%3Eand the Illumination of the Moon%3C/text%3E%3C/g%3E%3Cg transform='translate(200 180)'%3E%3Ccircle r='50' fill='%23fff'/%3E%3Ctext y='80' text-anchor='middle' fill='%23fff' font-size='11'%3ENew Moon%3C/text%3E%3C/g%3E%3Cg transform='translate(200 320)'%3E%3Ccircle r='50' fill='%23ddd'/%3E%3Cellipse rx='50' ry='50' fill='%23111'/%3E%3Cellipse rx='25' ry='50' fill='%23ddd'/%3E%3Ctext y='80' text-anchor='middle' fill='%23fff' font-size='11'%3EFirst Quarter%3C/text%3E%3C/g%3E%3Cg transform='translate(200 460)'%3E%3Ccircle r='50' fill='%23ccc'/%3E%3Ccircle r='50' fill='%23111' transform='translate(25 0)'/%3E%3Ctext y='80' text-anchor='middle' fill='%23fff' font-size='11'%3ELast Quarter%3C/text%3E%3C/g%3E%3C/svg%3E" alt="Lunar Phases Diagram" class="main-image">
+                <!-- Replace the src below with your image path -->
+                <!-- For uploaded files, use: /mnt/user-data/uploads/your-filename.png -->
+                <!-- Example: <img src="/mnt/user-data/uploads/1770988698617_image.png" alt="Colour Wheels Illustration" class="main-image"> -->
+                
+                <img src="https://dev1ord.github.io/Art/img32.jpg" alt="Colour Wheels Illustration" class="main-image">
             </div>
         </div>
 
         <div class="content-section">
-            <h1 class="title">Lunar Phases</h1>
+            <h1 class="title">Part Weird, Part Fascinating</h1>
 
             <div class="metadata">
                 <div class="meta-item">
                     <span class="meta-label">Artist</span>
-                    <span class="meta-value">Giovanni Battista Riccioli</span>
+                    <span class="meta-value">Shreyash Srivastva</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Date</span>
-                    <span class="meta-value">April 22, 1650</span>
+                    <span class="meta-value">March 15, 2025</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Medium</span>
-                    <span class="meta-value">Copper engraving</span>
+                    <span class="meta-label">Genre</span>
+                    <span class="meta-value">Poetry</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Dimensions</span>
-                    <span class="meta-value">32 × 24 cm</span>
+                    <span class="meta-label">Length</span>
+                    <span class="meta-value">27 Pages</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Link</span><a href="part weird part fascinating.pdf">
+                    <span class="meta-value">Go</span></a>
                 </div>
             </div>
 
             <h2 class="section-heading">Description</h2>
-
-            <p class="description">
-                This elegant astronomical diagram illustrates the phases of the Moon as observed from Earth throughout its monthly orbit. Created during the height of the Scientific Revolution, this work represents a significant advancement in astronomical understanding. The diagram demonstrates how the Moon's appearance changes based on its position relative to the Sun and Earth, showing the progression from new moon through the waxing and waning phases to full moon and back again. The precision and clarity of this illustration made it an essential teaching tool in astronomical education for centuries.
+            <p class="description" style="text-align: justify;">
+                Part Weird, Part Fascinating by Shreyash Srivastva is a poetry collection that explores raw emotion, surreal reflection, and the contradictions of everyday existence. Through free form and experimental verse, the work captures love, heartbreak, longing, and existential doubt with striking honesty. Love tastes like glucose, heartbreak vibrates like static, and identity unfolds under neon tinted thoughts. The poems move between confession and quiet rebellion, blending vulnerability with wit. It is a collection for readers who feel deeply and are drawn to beauty within strangeness.
             </p>
 
-            <h2 class="section-heading">Historical Context</h2>
-
+            <h2 class="section-heading">Theme</h2>
             <p class="description">
-                Giovanni Battista Riccioli was an Italian astronomer and Jesuit priest who made significant contributions to lunar cartography. His detailed observations and systematic approach to documenting celestial phenomena helped establish the methodologies that would guide astronomical research for generations. This particular diagram appeared in his influential work "Almagestum Novum," which attempted to reconcile traditional astronomical models with emerging telescopic observations.
+                In this work, heavy emotions are balanced with humor and playful imagery, while surreal observations reveal deeper truths about identity and perception. By rejecting rigid structure, the poetry creates space for authenticity and reflection. It invites readers to embrace the unusual, to question gently, and to find connection in the peculiar textures of human experience.
             </p>
+
+            <h2 class="section-heading">Gallery</h2>
+
+            <div class="gallery">
+                <a href="lunar-phases.html" class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Crect fill='%23000' width='200' height='300'/%3E%3Cg transform='translate(100 100)'%3E%3Ccircle r='70' fill='%23fff'/%3E%3Cpath d='M0,-50 A50,50 0 0,1 43.3,-25 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M43.3,-25 A50,50 0 0,1 43.3,25 L0,0 Z' fill='%23ff8800'/%3E%3Cpath d='M43.3,25 A50,50 0 0,1 0,50 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M0,50 A50,50 0 0,1 -43.3,25 L0,0 Z' fill='%2388ff00'/%3E%3Cpath d='M-43.3,25 A50,50 0 0,1 -43.3,-25 L0,0 Z' fill='%2300ffff'/%3E%3Cpath d='M-43.3,-25 A50,50 0 0,1 0,-50 L0,0 Z' fill='%230088ff'/%3E%3C/g%3E%3Cg transform='translate(100 220)'%3E%3Ccircle r='70' fill='%23000'/%3E%3CradialGradient id='g1'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff0000'/%3E%3C/radialGradient%3E%3Cpath d='M0,-50 A50,50 0 0,1 43.3,-25 L0,0 Z' fill='url(%23g1)'/%3E%3CradialGradient id='g2'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ffff00'/%3E%3C/radialGradient%3E%3Cpath d='M43.3,-25 A50,50 0 0,1 43.3,25 L0,0 Z' fill='url(%23g2)'/%3E%3CradialGradient id='g3'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2388ff00'/%3E%3C/radialGradient%3E%3Cpath d='M43.3,25 A50,50 0 0,1 0,50 L0,0 Z' fill='url(%23g3)'/%3E%3CradialGradient id='g4'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300ffff'/%3E%3C/radialGradient%3E%3Cpath d='M0,50 A50,50 0 0,1 -43.3,25 L0,0 Z' fill='url(%23g4)'/%3E%3CradialGradient id='g5'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230088ff'/%3E%3C/radialGradient%3E%3Cpath d='M-43.3,25 A50,50 0 0,1 -43.3,-25 L0,0 Z' fill='url(%23g5)'/%3E%3CradialGradient id='g6'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/radialGradient%3E%3Cpath d='M-43.3,-25 A50,50 0 0,1 0,-50 L0,0 Z' fill='url(%23g6)'/%3E%3C/g%3E%3C/svg%3E" alt="Historical color wheel" class="gallery-image">
+                </a>
+                <a href="planetary-motion.html" class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Cg transform='translate(50 100)'%3E%3Ccircle r='40' fill='%23fff'/%3E%3Cpath d='M0,-30 A30,30 0 0,1 26,-15 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M26,-15 A30,30 0 0,1 26,15 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M26,15 A30,30 0 0,1 0,30 L0,0 Z' fill='%23ff00ff'/%3E%3Cpath d='M0,30 A30,30 0 0,1 -26,15 L0,0 Z' fill='%230000ff'/%3E%3Cpath d='M-26,15 A30,30 0 0,1 -26,-15 L0,0 Z' fill='%2300ffff'/%3E%3Cpath d='M-26,-15 A30,30 0 0,1 0,-30 L0,0 Z' fill='%2300ff00'/%3E%3C/g%3E%3Cg transform='translate(150 100)'%3E%3Ccircle r='40' fill='%23fff'/%3E%3Cpath d='M0,-30 A30,30 0 0,1 26,-15 L0,0 Z' fill='%23ff0000'/%3E%3Cpath d='M26,-15 A30,30 0 0,1 26,15 L0,0 Z' fill='%23ff8800'/%3E%3Cpath d='M26,15 A30,30 0 0,1 0,30 L0,0 Z' fill='%23ffff00'/%3E%3Cpath d='M0,30 A30,30 0 0,1 -26,15 L0,0 Z' fill='%2300ff00'/%3E%3Cpath d='M-26,15 A30,30 0 0,1 -26,-15 L0,0 Z' fill='%230000ff'/%3E%3Cpath d='M-26,-15 A30,30 0 0,1 0,-30 L0,0 Z' fill='%23ff00ff'/%3E%3C/g%3E%3C/svg%3E" alt="Double color wheel" class="gallery-image">
+                </a>
+                <a href="geometric-solids.html" class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Ccircle cx='60' cy='50' r='15' fill='%23ffff00' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='140' cy='50' r='15' fill='%23ff8800' stroke='%23333' stroke-width='1'/%3E%3Ccircle cx='100' cy='100' r='15' fill='none' stroke='%23333' stroke-width='1'/%3E%3Cpath d='M60,120 Q100,100 140,120' fill='none' stroke='%23333' stroke-width='1'/%3E%3Cpath d='M60,120 A40,40 0 0,0 100,160' fill='%23ff0000' stroke='%23333' stroke-width='0.5' opacity='0.6'/%3E%3Cpath d='M100,160 A40,40 0 0,0 140,120' fill='%23ff00ff' stroke='%23333' stroke-width='0.5' opacity='0.6'/%3E%3C/svg%3E" alt="Geometric color study" class="gallery-image">
+                </a>
+                <a href="wave-harmonics.html" class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f5f1e8' width='200' height='200'/%3E%3Cpolygon points='100,40 140,90 120,140 80,140 60,90' fill='%23ff0000' stroke='%23333' stroke-width='1'/%3E%3Cpolygon points='100,60 130,95 115,130 85,130 70,95' fill='%23ffff00'/%3E%3Cpolygon points='100,80 120,100 110,120 90,120 80,100' fill='%230088ff'/%3E%3Cpolygon points='100,95 110,105 105,112 95,112 90,105' fill='%23000'/%3E%3C/svg%3E" alt="Color pyramid" class="gallery-image">
+                </a>
+            </div>
 
             <div class="navigation">
-                <a href="colour-wheels.html" class="nav-link">
+                <a href="botanical-classification.html" class="nav-link">
                     <span class="nav-label">Previous</span>
-                    <span class="nav-title">Colour Wheels</span>
+                    <span class="nav-title">Botanical Classification</span>
                 </a>
-                <a href="planetary-motion.html" class="nav-link" style="text-align: right;">
+                <a href="lunar-phases.html" class="nav-link" style="text-align: right;">
                     <span class="nav-label">Next</span>
-                    <span class="nav-title">Planetary Motion</span>
+                    <span class="nav-title">Lunar Phases</span>
                 </a>
             </div>
         </div>
